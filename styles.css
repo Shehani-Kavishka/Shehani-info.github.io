@@ -28,8 +28,7 @@
     border-radius: 10px;
 }
 .nav-item:hover{
-    /*background-color: rgb(194, 229, 202);*/
-    background-color:pink;
+    background-color: rgb(194, 229, 202);
 }
 a,a:hover,a:visited,a:active{
     color:black ;
