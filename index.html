@@ -10,6 +10,40 @@
     <title>Shehani Kavishka</title>
 </head>
 <body>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
+        import { getDatabase, set, ref } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA_XNK6zmP992IuRlgPUmsVFVKF3dsPEMg",
+            authDomain: "shehani-info.firebaseapp.com",
+            databaseURL: "https://shehani-info-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "shehani-info",
+            storageBucket: "shehani-info.appspot.com",
+            messagingSenderId: "473760184930",
+            appId: "1:473760184930:web:6ebc81b22f0be697beef3b"
+        };
+      
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        document.getElementById("form1").addEventListener("submit",function (e){
+            e.preventDefault();
+            let name = document.getElementById("input-name").value;
+            let email = document.getElementById("input-email").value;
+            let subject = document.getElementById("input-subject").value;
+            let message = document.getElementById("input-message").value;
+            set(ref(db, 'users/' + name), {
+                email: email,
+                subject: subject,
+                message : message
+            });
+            alert("Your message is sent successfully...\nStay tuned to hear from me...");
+            
+        })
+    </script>
+      
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12 nav-area">
@@ -159,10 +193,10 @@
             <div class="col-md-7 form-area">
                 <h1 class="text-1 font1">Contact Me</h1>
                 <form method="post" name="form1" id="form1">
-                    <input type="text" class="form-control" placeholder="Name" id="input-name"> <br>
-                    <input type="text" class="form-control" placeholder="Email" id="input-email"> <br>
-                    <input type="text" class="form-control" placeholder="Subject" id="input-subject"> <br>
-                    <textarea class="form-control" id="input-message">Message</textarea> <br>
+                    <input type="text" class="form-control" placeholder="Name" id="input-name" required> <br>
+                    <input type="email" class="form-control" placeholder="Email" id="input-email" required> <br>
+                    <input type="text" class="form-control" placeholder="Subject" id="input-subject" required> <br>
+                    <textarea class="form-control" id="input-message" required> </textarea> <br>
                     <input type="submit" class="btn btn-success" value="Send">
                 </form>
             </div>
